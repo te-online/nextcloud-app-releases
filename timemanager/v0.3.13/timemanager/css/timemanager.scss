@@ -1,0 +1,1121 @@
+#content * {
+	box-sizing: border-box;
+}
+
+#new-item input,
+#new-item textarea {
+	display: block;
+	width: 300px;
+}
+
+#app-content {
+	padding: 15px;
+}
+
+.tm_item-row {
+	width: 100%;
+	padding: 1px 10px;
+
+	&.with-link {
+		padding: 0;
+	}
+
+	.reports &.with-link > a,
+	.tools & {
+		display: grid;
+		grid-template-columns: 70% 30%;
+		padding-top: 8px;
+		padding-bottom: 8px;
+
+		h3 {
+			margin: 0;
+		}
+
+		details {
+			margin-top: 6px;
+			grid-column-start: 1;
+			grid-column-end: 3;
+		}
+	}
+
+	.tools & {
+		padding-right: 0;
+		padding-left: 0;
+		margin-left: 10px;
+	}
+
+	a:hover,
+	a:focus {
+		background: var(--color-primary-light);
+	}
+
+	a {
+		display: block;
+		padding: 1px 10px 5px;
+		background: var(--color-main-background-translucent);
+		transition: background-color 0.3s ease;
+	}
+
+	&:nth-child(odd) {
+		/* background: lightgrey; */
+		border-top: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
+	}
+}
+
+.tm_item-excerpt {
+	display: flex;
+	align-items: center;
+	padding-bottom: 5px;
+	flex-flow: row wrap;
+
+	& > span {
+		display: flex;
+		align-items: center;
+	}
+}
+
+.tm_item-note {
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.tm_item-date {
+	font-weight: 200;
+	min-height: 34px;
+	display: flex;
+	align-items: center;
+
+	& > .author {
+		display: flex;
+		align-items: center;
+	}
+}
+
+.tm_object-details {
+	margin-bottom: 20px;
+}
+
+.tm_item-list {
+	margin-top: 20px;
+	max-width: 600px;
+
+	&.space-bottom {
+		margin-bottom: 40px;
+	}
+}
+
+.tm_object-details a {
+	border-bottom: 1px solid var(--color-loading-light);
+	padding-bottom: 4px;
+	transition: border-color 0.3s ease;
+}
+
+.tm_object-details a:hover,
+.tm_object-details a:focus {
+	border-color: var(--color-primary);
+}
+
+.tm_object-details h2 {
+	margin-bottom: 30px;
+	display: flex;
+}
+
+/* .tm_object-details h2 a {
+	margin-left: 10px;
+} */
+
+.tm_summary {
+	display: flex;
+	background: var(--color-primary-light);
+	padding: 10px;
+	margin-bottom: 50px;
+}
+
+.tm_summary p {
+	margin-left: 35px;
+}
+
+.tm_summary p:first-child {
+	margin-left: 0;
+}
+
+.tm_label,
+.tm_new-item label {
+	text-transform: uppercase;
+	letter-spacing: 0.09em;
+	color: var(--color-main-text);
+	display: block;
+	font-size: 9pt;
+}
+
+.tm_object-details-item {
+	margin-bottom: 15px;
+}
+
+.tm_object-details form {
+	display: inline;
+	margin-right: 3px;
+
+	button {
+		margin-right: 0;
+	}
+}
+
+.tm_add {
+	padding: 20px 25px 25px;
+	border: 1px solid var(--color-border);
+	border-radius: 2px;
+}
+
+.tm_add h3 {
+	margin-bottom: 20px;
+}
+
+.tm_icon-checkmark {
+	margin-top: -5px;
+	background-color: transparent;
+	border: 0;
+	padding-bottom: 4px;
+}
+
+.tm_icon-checkmark-unpaid {
+	opacity: 0.2;
+}
+
+.tm_inline-hover-form {
+	display: none;
+	margin-left: 5px;
+}
+
+.btn.small,
+.tm_inline-hover-form .btn {
+	padding: 3px 6px;
+	min-height: initial;
+	height: 28px;
+	margin-left: 10px;
+}
+
+.tm_item-row:hover .tm_inline-hover-form {
+	display: block;
+}
+
+/* For some reason this is needed to fix the icon position in the nav */
+#app-navigation img {
+	margin-bottom: -3px;
+}
+
+.trim {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	display: inline-block;
+	max-width: calc(100% - 220px);
+}
+
+body.loading #content.app-timemanager:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -150px;
+	opacity: 0.5;
+	width: 150px;
+	height: 4px;
+	background: var(--color-primary);
+	animation: loading 5s 0.3s ease infinite;
+	z-index: 9999;
+}
+
+body.loading-error #content.app-timemanager:before {
+	content: "";
+	position: absolute;
+	top: 50px;
+	left: 0;
+	opacity: 0.5;
+	width: 100%;
+	height: 4px;
+	background: var(--color-error);
+	z-index: 9999;
+}
+
+@keyframes loading {
+	0% {
+		left: -150px;
+	}
+	50% {
+		left: 100%;
+	}
+	100% {
+		left: 0;
+	}
+}
+
+.app-timemanager .oc-dialog .inner {
+	padding-left: 10px;
+	padding-right: 10px;
+	min-width: 380px;
+	max-width: 480px;
+}
+
+label {
+	display: block;
+	font-size: 12px;
+	font-weight: normal;
+
+	&.space-top {
+		margin-top: 15px;
+	}
+}
+
+#content.app-timemanager {
+	h2.list-title {
+		display: inline-block;
+		margin-right: 5px;
+	}
+
+	.new {
+		display: inline-block;
+	}
+
+	// Waits 3 seconds for the JS to kick in, otherwise shows
+	// the SSR fallback.
+	[data-svelte-hide] {
+		@supports (animation: fallback 0.1s 3s forwards) {
+			opacity: 0;
+			overflow: hidden;
+			height: 0;
+			width: 0;
+			animation: fallback 0.1s 3s forwards;
+		}
+	}
+
+	.quick-add,
+	.reports-filters,
+	.reports-timerange {
+		display: grid;
+		margin-left: -30px;
+		width: calc(100% + 60px);
+		column-gap: 12px;
+
+		&.reports-filters,
+		&.reports-timerange {
+			width: calc(100% - 12px);
+			margin-left: 0;
+		}
+
+		@media screen and (max-width: 1024px) {
+			&,
+			&.reports-filters,
+			&.reports-timerange {
+				grid-template-columns: 100%;
+			}
+		}
+
+		> .actions {
+			display: flex;
+			align-items: center;
+			padding-top: 20px;
+
+			button {
+				flex-shrink: 0;
+				margin-bottom: 0;
+
+				&.button-w-icon {
+					padding-left: 34px;
+				}
+			}
+		}
+
+		.parents {
+			margin-right: 12px;
+			width: 100%;
+		}
+
+		label {
+			font-size: 12px;
+			display: flex;
+			flex-flow: column;
+			&.error {
+				input {
+					border-color: var(--color-error);
+				}
+			}
+		}
+
+		.duration-trigger {
+			width: 100%;
+		}
+
+		.duration-input {
+			width: 80px;
+		}
+
+		.date-input {
+			width: 100%;
+		}
+
+		.time-input {
+			padding: 0 5px;
+		}
+
+		.note,
+		.search,
+		.task-selector-trigger {
+			input {
+				width: 100%;
+			}
+		}
+
+		.search-input {
+			width: 100%;
+			padding: 6px 12px 6px 34px;
+		}
+
+		input {
+			height: 42px;
+		}
+
+		.selectContainer {
+			margin: 3px 3px 3px 0;
+			--border: none;
+
+			input {
+				border: 0;
+				background: none;
+			}
+		}
+	}
+
+	.quick-add-section {
+		// Avoid layout-shift when this component mounts
+		min-height: 156px;
+	}
+
+	.quick-add {
+		// Using minmax fixes some unpredictable layout-shifts in Safari...
+		grid-template-columns: minmax(200px, calc(100% - 556px)) 206px 250px 100px;
+
+		@media screen and (max-width: 768px) {
+			display: block;
+		}
+
+		--quick-add-z-index: 99999;
+	}
+
+	.note-autosuggest {
+		// extends .popover
+		width: 750px;
+		max-width: 60vw;
+		background: var(--color-main-background);
+		padding: 10px;
+		z-index: var(--quick-add-z-index);
+
+		li {
+			padding: 3px 2px;
+		}
+
+		.task {
+			padding: 6px;
+			width: 100%;
+			display: inline-block;
+
+			&:hover,
+			&:focus-visible {
+				background: var(--color-primary-light);
+			}
+		}
+	}
+
+	.duration-selector-popover {
+		// extends .popover
+		width: 350px;
+		max-width: 40vw;
+		background: var(--color-main-background);
+		padding: 12px;
+		z-index: var(--quick-add-z-index);
+	}
+
+	.task-selector-popover {
+		// extends .popover
+		width: 466px;
+		background: var(--color-main-background);
+		padding-top: 12px;
+		z-index: var(--quick-add-z-index);
+
+		.task-add-button {
+			padding-left: 34px;
+		}
+
+		.search-results,
+		.last-used {
+			li {
+				padding: 6px 3px;
+			}
+
+			.client {
+				text-transform: uppercase;
+				font-size: 12px;
+				font-weight: 600;
+			}
+
+			.project {
+				padding-left: 12px;
+				padding-top: 4px;
+				color: var(--color-text-maxcontrast);
+
+				& ~ ul li {
+					padding: 0;
+				}
+			}
+
+			.task {
+				padding: 6px 3px 6px 24px;
+				width: 100%;
+				display: inline-block;
+
+				&:hover,
+				&:focus-visible {
+					background: var(--color-primary-light);
+				}
+			}
+
+			.no-result {
+				padding: 12px 6px;
+				color: var(--color-text-maxcontrast);
+			}
+
+			.last-used-wrapper {
+				padding: 3px 8px;
+
+				li {
+					display: flex;
+					padding: 0;
+
+					.label {
+						flex: 30%;
+						font-size: 12px;
+					}
+
+					.value {
+						flex: 70%;
+					}
+
+					.muted {
+						color: var(--color-text-maxcontrast);
+					}
+				}
+			}
+		}
+
+		.search-results {
+			max-height: calc(80vh - 250px);
+			overflow-y: auto;
+		}
+	}
+
+	.combo-entry-wrapper {
+		padding: 3px 4px;
+
+		&:hover,
+		&:focus-visible {
+			background: var(--color-primary-light);
+		}
+
+		li {
+			display: flex;
+			padding: 0;
+
+			.label {
+				flex: 30%;
+				font-size: 12px;
+			}
+
+			.value {
+				flex: 70%;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+			}
+
+			.muted {
+				color: var(--color-text-maxcontrast);
+			}
+		}
+	}
+
+	.reports-filters {
+		grid-template-columns: repeat(auto-fill, minmax(calc(20% - 10px), 100px));
+	}
+
+	.reports-timerange {
+		margin-top: 12px;
+		grid-template-columns: 200px repeat(4, 150px);
+	}
+
+	.checkbox-action label {
+		display: inline;
+	}
+
+	.checkbox-action-loading.icon-loading:after {
+		height: 8px;
+		width: 8px;
+		margin: -6px 0 0 -44px;
+	}
+
+	.statistics {
+		margin-left: -30px;
+		width: calc(100% + 45px);
+		// Attempt to avoid flicker
+		min-height: 40vh;
+
+		.week-navigation {
+			margin-top: 24px;
+			color: var(--color-main-text);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			.dates {
+				color: var(--color-text-maxcontrast);
+			}
+		}
+
+		.top-stats {
+			display: flex;
+			justify-content: space-around;
+			margin-top: 48px;
+
+			figure {
+				font-size: 28px;
+
+				figcaption {
+					padding-bottom: 12px;
+				}
+			}
+		}
+
+		.hours-per-week {
+			display: grid;
+			grid-template-columns: repeat(var(--tm-stats-columns, 7), minmax(auto, 100px));
+			justify-content: center;
+			height: 40vh;
+			width: 100%;
+			margin-top: 12px;
+
+			.empty {
+				color: var(--color-text-maxcontrast);
+				grid-column-start: 1;
+				grid-column-end: 8;
+				text-align: center;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.column {
+				height: calc(100% - 75px);
+				align-self: flex-end;
+				width: 100%;
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+				flex-flow: column;
+				// .column-inner
+				&-inner {
+					background: var(--color-primary);
+					opacity: 0.57;
+					margin-bottom: 12px;
+					flex-shrink: 0;
+					flex-grow: 0;
+					width: calc(100% - 6px);
+					max-width: 60px;
+					@supports (animation: scale 0.4s cubic-bezier(0.33, 1, 0.68, 1) forwards) {
+						transform: scaleY(0.4);
+						opacity: 0;
+						animation: scale 0.4s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+					}
+					transform-origin: bottom center;
+				}
+			}
+
+			.date-label {
+				color: var(--color-text-maxcontrast);
+				position: relative;
+				text-align: center;
+				transition: opacity 0.3s ease;
+
+				span {
+					display: block;
+				}
+
+				.day {
+					color: var(--color-main-text);
+				}
+
+				.date {
+					margin-top: -6px;
+				}
+
+				&:before {
+					content: "";
+					position: absolute;
+					top: -8px;
+					left: calc(50% - 2px);
+					height: 8px;
+					width: 0;
+					border-left: 1px solid var(--color-background-darker);
+				}
+			}
+
+			.hours-label {
+				color: var(--color-main-text);
+				margin-bottom: 4px;
+				text-align: center;
+
+				@supports (animation: fade 0.4s 0.2s ease forwards) {
+					opacity: 0;
+					animation: fade 0.4s 0.2s ease forwards;
+				}
+				transform-origin: bottom center;
+			}
+
+			// Crowded graphs
+			&.many {
+				.column:nth-child(odd) {
+					.date-label {
+						opacity: 0;
+					}
+				}
+
+				&:hover {
+					.column:not(:hover) .date-label {
+						opacity: 0;
+					}
+					.column:nth-child(odd):hover .date-label {
+						opacity: 1;
+					}
+				}
+
+				.date-label {
+					width: 200%;
+					font-size: 9pt;
+
+					.date {
+						margin-top: -10px;
+					}
+				}
+
+				.hours-label {
+					width: 200%;
+					font-size: 9pt;
+				}
+			}
+		}
+	}
+
+	.reports {
+		h2 {
+			margin-bottom: 24px;
+		}
+
+		details {
+			padding-left: 12px;
+			padding-bottom: 12px;
+			padding-top: 6px;
+			color: var(--color-text-maxcontrast);
+			cursor: pointer;
+
+			.tm_item-note {
+				color: var(--color-main-text);
+			}
+		}
+
+		.statistics {
+			width: 100%;
+			margin-left: 0;
+
+			// Attempt to avoid flicker
+			min-height: 300px;
+
+			.hours-per-week {
+				height: 300px;
+			}
+		}
+
+		.sharee-filter-label {
+			position: relative;
+			margin-right: 10px;
+
+			&:after {
+				content: "";
+				height: 65%;
+				width: 1px;
+				background: var(--color-border-dark);
+				display: block;
+				position: absolute;
+				right: -10px;
+				bottom: 0;
+			}
+		}
+	}
+
+	.reports-section {
+		// Avoid layout-shift when this component mounts
+		min-height: 308px;
+	}
+
+	.tools {
+		.csv_list {
+			display: grid;
+			grid-template-columns: 150px 1fr;
+		}
+
+		form {
+			padding: 36px 0 48px;
+		}
+	}
+
+	.latest-headline {
+		margin-bottom: 24px;
+	}
+
+	.filter-button {
+		padding: 6px 12px 6px 34px;
+		margin-left: 8px;
+		margin-bottom: -8px;
+		margin-top: -4px;
+		position: relative;
+
+		&.active {
+			padding-right: 36px;
+
+			&:after {
+				content: "";
+				position: absolute;
+				right: 12px;
+				top: 12px;
+				width: 8px;
+				height: 8px;
+				border-radius: 100%;
+				background: var(--color-primary);
+			}
+		}
+	}
+
+	// Fix Nextcloud 25's weird styling of file inputs
+	input[type="file"] {
+		border: 0;
+		border-radius: 0;
+		padding: 0;
+	}
+
+	// Fix Nexctloud 25's too small date inputs
+	input[type="date"] {
+		min-width: 150px;
+	}
+
+	/**
+	 * 	Missing legacy navigation styling
+	 * 	Starting v28.0.0rc2
+	 */
+
+	#app-navigation:not(.vue) > ul {
+		position: relative;
+		height: 100%;
+		width: 100%;
+		overflow-x: hidden;
+		overflow-y: auto;
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		padding: calc(var(--default-grid-baseline) * 2);
+	}
+
+	#app-navigation:not(.vue) > ul > li,
+	#app-navigation:not(.vue) > ul > li > ul > li {
+		position: relative;
+		box-sizing: border-box;
+	}
+
+	#app-navigation:not(.vue) > ul > li {
+		display: inline-flex;
+		flex-wrap: wrap;
+		order: 1;
+		flex-shrink: 0;
+		margin: 0;
+		margin-bottom: 3px;
+		width: 100%;
+		border-radius: var(--border-radius-pill);
+	}
+
+	#app-navigation:not(.vue) > ul > li.active,
+	#app-navigation:not(.vue) > ul > li.active > a,
+	#app-navigation:not(.vue) > ul > li a:active,
+	#app-navigation:not(.vue) > ul > li a:active > a,
+	#app-navigation:not(.vue) > ul > li a.selected,
+	#app-navigation:not(.vue) > ul > li a.selected > a,
+	#app-navigation:not(.vue) > ul > li a.active,
+	#app-navigation:not(.vue) > ul > li a.active > a {
+		background-color: var(--color-primary-light);
+	}
+
+	#app-navigation:not(.vue) > ul > li > a,
+	#app-navigation:not(.vue) > ul > li > ul > li > a {
+		background-size: 16px 16px;
+		background-position: 14px center;
+		background-repeat: no-repeat;
+		display: block;
+		justify-content: space-between;
+		line-height: 44px;
+		min-height: 44px;
+		padding: 0 12px 0 14px;
+		overflow: hidden;
+		box-sizing: border-box;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		border-radius: var(--border-radius-pill);
+		color: var(--color-main-text);
+		flex: 1 1 0px;
+		z-index: 100;
+	}
+
+	#app-navigation:not(.vue) > ul > li a:hover,
+	#app-navigation:not(.vue) > ul > li a:hover > a,
+	#app-navigation:not(.vue) > ul > li a:focus,
+	#app-navigation:not(.vue) > ul > li a:focus > a {
+		background-color: var(--color-background-hover);
+	}
+
+	#app-navigation:not(.vue) > ul > li > a:first-child img,
+	#app-navigation:not(.vue) > ul > li > ul > li > a:first-child img {
+		margin-right: 11px;
+		width: 16px;
+		height: 16px;
+		filter: var(--background-invert-if-dark);
+	}
+}
+
+.flex-fields {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 6px;
+}
+
+.oc-dialog-buttonrow.reverse {
+	flex-flow: row-reverse;
+}
+
+.sharing-dialog {
+	.sharee-list {
+		margin-top: 15px;
+		margin-bottom: 25px;
+
+		li {
+			min-height: 30px;
+			margin-top: 5px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			figure {
+				display: flex;
+				align-items: center;
+			}
+
+			img,
+			.material-design-icon {
+				margin: auto 5px auto 0;
+				border-radius: 100%;
+				width: 32px;
+				height: 32px;
+			}
+		}
+	}
+
+	aside {
+		// The explainer text
+		margin-top: 24px;
+
+		p {
+			font-size: 14px;
+			color: var(--color-text-maxcontrast);
+			line-height: 24px;
+			margin-top: 12px;
+		}
+	}
+}
+
+.existing-sharees {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+
+	li {
+		margin-bottom: 5px;
+		margin-right: 5px;
+		display: flex;
+		align-items: center;
+		min-height: 32px;
+
+		img,
+		.material-design-icon {
+			margin: auto 5px;
+			border-radius: 100%;
+			width: 32px;
+			height: 32px;
+
+			&.sharee-group {
+				filter: var(--background-invert-if-dark);
+			}
+		}
+	}
+
+	&.compact {
+		li {
+			margin-bottom: 0;
+			min-height: 16px;
+			color: var(--color-text-maxcontrast);
+		}
+
+		img,
+		.material-design-icon {
+			width: 16px;
+			height: 16px;
+		}
+	}
+}
+
+.popover {
+	background: var(--color-background-dark);
+	box-shadow: var(--color-primary-light) 0px 1px 4px 1px;
+	width: 320px;
+	border: 1px solid var(--color-border);
+	border-radius: 2px;
+	padding: 0 12px 12px;
+}
+
+.button-w-icon {
+	background-position: 12px center;
+}
+
+input.time-input,
+input.duration-input {
+	width: 100px;
+}
+
+@keyframes fallback {
+	0% {
+		height: 0;
+		width: 0;
+		opacity: 0;
+	}
+	100% {
+		height: 100%;
+		width: 100%;
+		opacity: 1;
+	}
+}
+
+@keyframes scale {
+	0% {
+		transform: scaleY(0.4);
+		opacity: 0;
+	}
+	100% {
+		transform: scaleY(1);
+		opacity: 1;
+	}
+}
+
+@keyframes fade {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+:root {
+	.selectContainer {
+		// svelte-select theming
+		--background: var(--color-main-background);
+		--listBackground: var(--color-main-background);
+		--itemHoverBG: var(--color-primary-light);
+		--itemIsActiveBG: var(--color-primary-light);
+		--multiItemActiveBG: var(--color-primary-element);
+		--multiItemBG: var(--color-primary-light);
+		--spinnerColor: var(--color-primary);
+		--borderFocusColor: var(--color-primary-element);
+		--borderHoverColor: var(--color-primary-element);
+		--inputColor: var(--color-main-text);
+		--border: 1px solid var(--color-border-dark);
+	}
+
+	// This fixes Chrome's "calendar" icon not being visible in dark mode
+	@media (prefers-color-scheme: dark) {
+		input {
+			color-scheme: dark;
+		}
+	}
+}
+
+@media print {
+	// Hide navigation, filters, form-title, Nextcloud-header
+	#app-navigation,
+	.reports-filters,
+	.filters-form-title,
+	#content.app-timemanager .quick-add > .actions,
+	#content.app-timemanager .reports-filters > .actions,
+	#content.app-timemanager .reports-timerange > .actions,
+	.reports-timerange .status,
+	button[type="button"],
+	.export-button,
+	#header {
+		display: none !important;
+	}
+
+	// Remove extra spacing for navigation that is now hidden
+	#app-navigation:not(.hidden) + #app-content {
+		margin-left: 0;
+	}
+
+	// NC25 introduced a "framed" content.
+	// This fixes subsequent pages not being printed
+	// and other layout issues
+	html,
+	body,
+	#content {
+		overflow: initial;
+		position: relative !important;
+		height: 100%;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		border-radius: 0;
+	}
+
+	#app-content {
+		overflow: initial;
+	}
+
+	// Streamline text color and remove backgrounds
+	* {
+		background: none !important;
+		color: black !important;
+	}
+
+	// Adjust section spacing
+	.section {
+		padding: 0.12cm;
+	}
+
+	// Don't break pages inside a time entry item on reports page
+	.tm_item-row {
+		break-inside: avoid;
+	}
+
+	.statistics .column-inner {
+		border: 1px solid var(--color-main-text);
+	}
+}
